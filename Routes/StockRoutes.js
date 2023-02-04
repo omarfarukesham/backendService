@@ -6,3 +6,6 @@ router.get('/stock', getStockController)
 router.post('/stock', postStockController)
 router.patch('/stock/:id', updateStockController)
 router.delete('/stock/:id', deleteStockController)
+
+
+module.exports = router

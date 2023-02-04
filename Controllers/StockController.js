@@ -17,6 +17,7 @@ const getStockController = async (req, res) => {
 
 const postStockController = async (req, res) => {
     try {
+        console.log(req.body);
         const result = await postStockService(req.body)
         res.status(200).json({
             status: 'Success',

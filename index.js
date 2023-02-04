@@ -9,10 +9,12 @@ app.use(cors());
 const BrandRoutes = require("./Routes/BrandRoutes");
 const CategoryRoute = require('./Routes/CategoryRoutes')
 const ProductRoute = require('./Routes/ProductRoutes')
+const StockRoute = require('./Routes/StockRoutes')
 
 app.use('/', BrandRoutes)
 app.use('/', CategoryRoute)
 app.use('/', ProductRoute)
+app.use('/', StockRoute)
 
 // database connection
 mongoose.connect('mongodb://localhost/inventorySystem', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {

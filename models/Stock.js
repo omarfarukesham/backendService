@@ -16,7 +16,7 @@ const stockSchema = mongoose.Schema({
         unique: [true, "Name must be unique"],
         lowercase: true,
         minLength: [3, "Name must be at least 3 characters."],
-        maxLenght: [100, "Name is too large"],
+        maxLength: [100, "Name is too large"],
     },
     description: {
         type: String,
@@ -32,25 +32,29 @@ const stockSchema = mongoose.Schema({
         }
     },
 
-    imageURLs: [{
-        type: String,
-        required: true,
-        validate: {
-            validator: (value) => {
-                if (!Array.isArray(value)) {
-                    return false;
-                }
-                let isValid = true;
-                value.forEach(url => {
-                    if (!validator.isURL(url)) {
-                        isValid = false;
-                    }
-                });
-                return isValid;
-            },
-            message: "Please provide valid image urls"
-        }
-    }],
+    // imageURLs:{
+    //     type:string,
+
+    // }
+    // imageURLs: [{
+    //     type: String,
+    //     required: true,
+    //     validate: {
+    //         validator: (value) => {
+    //             if (!Array.isArray(value)) {
+    //                 return false;
+    //             }
+    //             let isValid = true;
+    //             value.forEach(url => {
+    //                 if (!validator.isURL(url)) {
+    //                     isValid = false;
+    //                 }
+    //             });
+    //             return isValid;
+    //         },
+    //         message: "Please provide valid image urls"
+    //     }
+    // }],
     price: {
         type: Number,
         required: true,
@@ -78,7 +82,7 @@ const stockSchema = mongoose.Schema({
         }
     },
     status: {
-        type: string,
+        type: String,
         required: true,
         enum: {
             values: ["in-stock", "out-of-stock", "discontinued"],
@@ -119,16 +123,16 @@ const stockSchema = mongoose.Schema({
 })
 
 
-productSchema.pre('save', function (next) {
+// productSchema.pre('save', function (next) {
 
-    //this -> 
-    console.log(' Before saving data');
-    if (this.quantity == 0) {
-        this.status = 'out-of-stock'
-    }
+//     //this -> 
+//     console.log(' Before saving data');
+//     if (this.quantity == 0) {
+//         this.status = 'out-of-stock'
+//     }
 
-    next()
-})
+//     next()
+// })
 
 
 const Stock = mongoose.model('Stock', stockSchema)
